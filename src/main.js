@@ -1,6 +1,4 @@
-const API_URL = 'http://195.250.62.211:8045';
-
-// const API_URL = '';
+const API_URL = 'http://195.250.62.211:8030';
 
 function getSessionId() {
     const urlParams = new URLSearchParams(window.location.search);

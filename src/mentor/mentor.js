@@ -30,12 +30,11 @@ function sendMessage() {
     const name = document.getElementById('name').value;
     const sessionId = getSessionId();
     const questionId = generateId();
+    const question = new Question('Q1')
+    const message = new Message(name, questionId, question);
+    console.log('!!!!', message);
     showMessage("Sent question id: " + questionId);
-    stompClient.send(`/app/question/${sessionId}`, {}, JSON.stringify({
-        id: questionId,
-        from: name,
-        payload: {id: questionId, question: 'TO DO'}
-    }));
+    stompClient.send(`/app/question/${sessionId}`, {}, JSON.stringify(message));
 }
 
 function showMessage(message) {

@@ -25,8 +25,8 @@ function connect() {
 
 function handleQuestion(message) {
     const msg = JSON.parse(message);
-    console.log(message, msg, msg.id);
-    document.getElementById('questionId').value = msg.id;
+    console.log(message, msg, msg.id, msg.payload, msg.payload.type);
+    document.getElementById('questionId').value = msg.questionId;
 }
 
 function disconnect() {
@@ -41,11 +41,8 @@ function sendMessage() {
     const questionId = document.getElementById('questionId').value;
     const answer = document.getElementById('answer').value;
     showMessage('Sent answer: ' + answer + ' questionId: ' + questionId);
-    stompClient.send(`/app/answer/${sessionId}`, {}, JSON.stringify({
-        from: name,
-        questionId,
-        payload: answer
-    }));
+    const message = new Message(name, questionId, answer);
+    stompClient.send(`/app/answer/${sessionId}`, {}, JSON.stringify(message));
 }
 
 function showMessage(message) {
