@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+../.idea/.gitignore
+.idea/checkstyle-idea.xml
+.idea/hackatone.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/sonarlint/
+.idea/vcs.xml
