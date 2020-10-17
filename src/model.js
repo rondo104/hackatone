@@ -12,8 +12,10 @@ class Message {
 
 class Question {
     type;
+    question;
 
-    constructor(type) {
+    constructor(type, question) {
         this.type = type;
+        this.question = question;
     }
 }

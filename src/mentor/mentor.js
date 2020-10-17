@@ -15,7 +15,7 @@ function connect() {
         const sessionId = getSessionId();
         console.log(`Connected [session id = ${sessionId}] : `, frame);
         stompClient.subscribe(`/answer/answer/${sessionId}`, message => {
-            showMessage(message.body);
+            showMessage(JSON.parse(message.body));
         });
     });
 }
@@ -28,12 +28,13 @@ function disconnect() {
 
 function sendMessage() {
     const name = document.getElementById('name').value;
+    const questionValue = document.getElementById('question').value;
     const sessionId = getSessionId();
     const questionId = generateId();
-    const question = new Question('Q1')
+    const question = new Question('OPEN', questionValue);
     const message = new Message(name, questionId, question);
-    console.log('!!!!', message);
-    showMessage("Sent question id: " + questionId);
+    // console.log('!!!!', message);
+    // showMessage("Sent question id: " + questionId);
     stompClient.send(`/app/question/${sessionId}`, {}, JSON.stringify(message));
 }
 
@@ -41,6 +42,6 @@ function showMessage(message) {
     const response = document.getElementById('response');
     const p = document.createElement('p');
     p.style.wordWrap = 'break-word';
-    p.appendChild(document.createTextNode(message));
+    p.innerHTML = `<strong>${message.from}</strong> <i>${new Date().toLocaleTimeString()}</i><br>${message.payload}`;
     response.appendChild(p);
 }

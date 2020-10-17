@@ -16,13 +16,18 @@
     Javascript and reload this page!</h2></noscript>
 <div>
     <div>
+        <label>What is your name?</label>
+        <input type="text" id="name"/>
+        <br>
         <button id="connect" onclick="connect();">Connect</button>
         <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
     </div>
     <div id="conversationDiv">
-        <label>What is your name?</label>
-        <input type="text" id="name"/>
+        <hr>
+        <input type="text" id="question"/>
         <button id="sendName" onclick="sendMessage();">Send</button>
+        <hr>
+        Result
         <p id="response"></p>
     </div>
 </div>
